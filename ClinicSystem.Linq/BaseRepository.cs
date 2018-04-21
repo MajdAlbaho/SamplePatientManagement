@@ -12,11 +12,11 @@ namespace ClinicSystem.Linq
 {
     public class BaseRepository
     {
-        public Task ExecuteOnDb(Action<ClinicSystemDataContext> action)
+        public Task ExecuteOnDb(Action<DbContextManager> action)
         {
             return Task.Run(() =>
             {
-                using (var db = new ClinicSystemDataContext())
+                using (var db = new DbContextManager())
                 {
                     action?.Invoke(db);
                     db.SubmitChanges();
@@ -24,11 +24,11 @@ namespace ClinicSystem.Linq
             });
         }
 
-        protected Task<TResult> ExecuteOnDb<TResult>(Func<ClinicSystemDataContext, TResult> action)
+        protected Task<TResult> ExecuteOnDb<TResult>(Func<DbContextManager, TResult> action)
         {
             return Task.Run(() =>
             {
-                using (var db = new ClinicSystemDataContext())
+                using (var db = new DbContextManager())
                 {
                     var res = action(db);
                     db.SubmitChanges();
@@ -57,7 +57,7 @@ namespace ClinicSystem.Linq
             });
         }
 
-        protected TTable GetItemByPrimaryKey(ClinicSystemDataContext context, object pk)
+        protected TTable GetItemByPrimaryKey(DbContextManager context, object pk)
         {
             var table = context.GetTable<TTable>();
             var mapping = context.Mapping.GetTable(typeof(TTable));

@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClinicSystem.dbml</DependentUpon>
     </Compile>
+    <Compile Include="LinqDb\DbContextManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
