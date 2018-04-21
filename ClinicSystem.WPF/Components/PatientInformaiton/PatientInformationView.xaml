@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="ClinicSystem.WPF.Components.PatientInformaiton.PatientInformationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicSystem.WPF.Components.PatientInformaiton"
+             xmlns:telerik = "http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:ClinicSystem.DataType.Converters;assembly=ClinicSystem.DataType"
+             xmlns:localization="clr-namespace:ClinicSystem.DataType.Base.Localization;assembly=ClinicSystem.DataType"
+             d:DesignHeight="200" d:DesignWidth="600">
+    <UserControl.Resources>
+        <local:PatientInformationViewModel x:Key="DesignData"/>
+        <converters:OperationToBoolConverter x:Key="OperationToBoolConverter"/>
+        <Style x:Key="infoStackPanel"
+                TargetType="StackPanel">
+            <Setter Property="Width"
+                    Value="225"/>
+            <Setter Property="Orientation"
+                    Value="Horizontal"/>
+            <Setter Property="Margin"
+                    Value="0 0 0 5"/>
+        </Style>
+        <Style x:Key="infoLabel"
+               TargetType="Label">
+            <Setter Property="Width"
+                    Value="90"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style>
+        <Style x:Key="InfoTextBox"
+               TargetType="TextBox">
+            <Setter Property="Width"
+                    Value="120"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style>
+        <Style x:Key="InfoDatePickerStyle"
+               TargetType="telerik:RadDateTimePicker">
+            <Setter Property="Width"
+                    Value="120"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style>
+        <Style x:Key="InfoComboBox"
+               TargetType="ComboBox">
+            <Setter Property="Width"
+                    Value="120"/>
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel d:DataContext="{StaticResource DesignData}">
+        <Label Content="{localization:Localize PatientInformaiton}"
+               DockPanel.Dock="Top"
+               HorizontalAlignment="Left"
+               Style="{StaticResource HeaderLabel}"/>
+        <StackPanel DockPanel.Dock="Left">
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize FirstName}"
+                   Style="{StaticResource infoLabel}"/>
+                <TextBox Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource InfoTextBox}"
+                         IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize LastName}"
+                   Style="{StaticResource infoLabel}"/>
+                <TextBox Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource InfoTextBox}"
+                         IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize BirthDate}"
+                   Style="{StaticResource infoLabel}"/>
+                <telerik:RadDatePicker SelectedValue="{Binding BirthDate,UpdateSourceTrigger=PropertyChanged,StringFormat=d}"
+                     Style="{StaticResource InfoDatePickerStyle}"
+                                       IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize Gender}"
+                   Style="{StaticResource infoLabel}"/>
+                <ComboBox ItemsSource="{Binding Genders,UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedGender,UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="EnName"
+                          Style="{StaticResource InfoComboBox}"
+                          IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize RegisterDate}"
+                   Style="{StaticResource infoLabel}"/>
+                <telerik:RadDatePicker SelectedValue="{Binding RegistrationDate,UpdateSourceTrigger=PropertyChanged,StringFormat=d}"
+                     Style="{StaticResource InfoDatePickerStyle}"
+                                       IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize Address}"
+                   Style="{StaticResource infoLabel}"/>
+                <TextBox Text="{Binding Address,UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource InfoTextBox}"
+                         IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Style="{StaticResource infoStackPanel}">
+                <Label Content="{localization:Localize PhoneNumber}"
+                    Style="{StaticResource infoLabel}"/>
+                <TextBox Text="{Binding PhoneNumber,UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource InfoTextBox}"
+                         IsEnabled="{Binding Operation,Converter={StaticResource OperationToBoolConverter}}"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

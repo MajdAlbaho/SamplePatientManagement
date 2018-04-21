@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="ClinicSystem.WPF.Components.PatientsList.PatientListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicSystem.WPF.Components.PatientsList"
+             xmlns:telerik = "http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:localization="clr-namespace:ClinicSystem.DataType.Base.Localization;assembly=ClinicSystem.DataType"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+    </UserControl.InputBindings>
+    <DockPanel>
+        <Label Content="{localization:Localize PatientsList}"
+               Style="{StaticResource HeaderLabel}"
+               DockPanel.Dock="Top"/>
+        <StackPanel Orientation="Horizontal"
+                    DockPanel.Dock="Top">
+            <Button Command="{Binding AddPatientCommand}" Content="{localization:Localize Add}"/>
+            <Button Command="{Binding EditPatientCommand}" Content="{localization:Localize Edit}"/>
+            <Button Command="{Binding DeletePatientCommand}" Content="{localization:Localize Delete}"/>
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Label Content="{localization:Localize Search}"
+                   VerticalContentAlignment="Center"/>
+            <Button Content="{localization:Localize Search}"
+                    Command="{Binding SearchCommand}"
+                    DockPanel.Dock="Right"
+                    Width="Auto"/>
+            <TextBox Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged}"
+                     Height="30"
+                     Margin="3"/>
+        </DockPanel>
+        <telerik:RadGridView ItemsSource="{Binding PatientsListView,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectedPatient,UpdateSourceTrigger=PropertyChanged}"
+                             IsFilteringAllowed="False"
+                             ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="{localization:Localize Code}"
+                                        DataMemberBinding="{Binding PersonId}"
+                                        Width="*"/>
+                <telerik:GridViewDataColumn Header="{localization:Localize PatientName}"
+                                        DataMemberBinding="{Binding FullName}"
+                                        Width="2*"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+    </DockPanel>
+</UserControl>

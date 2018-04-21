@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ClinicSystem.Dev" Class="ClinicSystemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Home_Laptop;Initial Catalog=ClinicSystem.Dev;Integrated Security=True" SettingsObjectName="ClinicSystem.Linq.Properties.Settings" SettingsPropertyName="ClinicSystem_DevConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Medical.Clinics" Member="Clinics">
+    <Type Name="Clinic">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Clinic_Doctor" Member="Doctors" ThisKey="Id" OtherKey="ClinicId" Type="Doctor" />
+      <Association Name="Clinic_VisitConsultation" Member="VisitConsultations" ThisKey="Id" OtherKey="ClinicId" Type="VisitConsultation" />
+    </Type>
+  </Table>
+  <Table Name="Person.Persons" Member="Persons">
+    <Type Name="Person">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Person_Patient" Member="Patient" ThisKey="Id" OtherKey="PersonId" Type="Patient" Cardinality="One" />
+      <Association Name="Person_PatientVisit" Member="PatientVisits" ThisKey="Id" OtherKey="PersonId" Type="PatientVisit" />
+    </Type>
+  </Table>
+  <Table Name="Medical.Diagnosis" Member="Diagnosis">
+    <Type Name="Diagnosi">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Diagnosi_ConsultationDiagnosi" Member="ConsultationDiagnosis" ThisKey="Id" OtherKey="DiagnosisId" Type="ConsultationDiagnosi" />
+    </Type>
+  </Table>
+  <Table Name="Medical.Doctors" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClinicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Doctor_VisitConsultation" Member="VisitConsultations" ThisKey="Id" OtherKey="DoctorId" Type="VisitConsultation" />
+      <Association Name="Clinic_Doctor" Member="Clinic" ThisKey="ClinicId" OtherKey="Id" Type="Clinic" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="MedicalPoint.MedicalPoints" Member="MedicalPoints">
+    <Type Name="MedicalPoint">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="MedicalPoint_Patient" Member="Patients" ThisKey="Id" OtherKey="MedicalPointId" Type="Patient" />
+    </Type>
+  </Table>
+  <Table Name="Patient.ConsultationDiagnosis" Member="ConsultationDiagnosis">
+    <Type Name="ConsultationDiagnosi">
+      <Column Name="VisitConsultationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DiagnosisId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Diagnosi_ConsultationDiagnosi" Member="Diagnosi" ThisKey="DiagnosisId" OtherKey="Id" Type="Diagnosi" IsForeignKey="true" />
+      <Association Name="VisitConsultation_ConsultationDiagnosi" Member="VisitConsultation" ThisKey="VisitConsultationId" OtherKey="Id" Type="VisitConsultation" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Patient.Patients" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="PersonId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RegistrationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MedicalPointId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MedicalPoint_Patient" Member="MedicalPoint" ThisKey="MedicalPointId" OtherKey="Id" Type="MedicalPoint" IsForeignKey="true" />
+      <Association Name="Person_Patient" Member="Person" ThisKey="PersonId" OtherKey="Id" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Patient.PatientVisits" Member="PatientVisits">
+    <Type Name="PatientVisit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PersonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="PatientVisit_VisitConsultation" Member="VisitConsultations" ThisKey="Id" OtherKey="PatientVisitId" Type="VisitConsultation" />
+      <Association Name="Person_PatientVisit" Member="Person" ThisKey="PersonId" OtherKey="Id" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Patient.VisitConsultations" Member="VisitConsultations">
+    <Type Name="VisitConsultation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientVisitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClinicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="VisitConsultation_ConsultationDiagnosi" Member="ConsultationDiagnosis" ThisKey="Id" OtherKey="VisitConsultationId" Type="ConsultationDiagnosi" />
+      <Association Name="PatientVisit_VisitConsultation" Member="PatientVisit" ThisKey="PatientVisitId" OtherKey="Id" Type="PatientVisit" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Clinic_VisitConsultation" Member="Clinic" ThisKey="ClinicId" OtherKey="Id" Type="Clinic" IsForeignKey="true" />
+      <Association Name="Doctor_VisitConsultation" Member="Doctor" ThisKey="DoctorId" OtherKey="Id" Type="Doctor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Management.Cultures" Member="Cultures">
+    <Type Name="Culture">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="Patient.GetPatient" Method="GetPatient" IsComposable="true">
+    <Parameter Name="PersonId" Parameter="personId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetPatientResult">
+      <Column Name="PersonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MedicalPointId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Medical]
+    AUTHORIZATION [dbo];
+

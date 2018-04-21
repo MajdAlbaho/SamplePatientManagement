@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicSystem.Model", "ClinicSystem.Model\ClinicSystem.Model.csproj", "{20E22C43-052A-4BA8-8475-9305CD6FEB32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicSystem.Linq", "ClinicSystem.Linq\ClinicSystem.Linq.csproj", "{58F32AC7-9419-418B-B124-8AD8970EE608}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicSystem.DataTypes", "ClinicSystem.DataType\ClinicSystem.DataTypes.csproj", "{E11A9E3F-9BE8-4566-9D2F-B5FA05C9C543}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicSystem.WPF", "ClinicSystem.WPF\ClinicSystem.WPF.csproj", "{6E3DA275-FA38-4ED7-B95B-EF35A1899D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicSystem.SignalR", "ClinicSystem.SignalR\ClinicSystem.SignalR.csproj", "{3BE3E0C3-084D-4E56-8EB2-CB7195CB7F7A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ClinicSystem.Database", "ClinicSystem.Database\ClinicSystem.Database.sqlproj", "{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20E22C43-052A-4BA8-8475-9305CD6FEB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E22C43-052A-4BA8-8475-9305CD6FEB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E22C43-052A-4BA8-8475-9305CD6FEB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E22C43-052A-4BA8-8475-9305CD6FEB32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F32AC7-9419-418B-B124-8AD8970EE608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F32AC7-9419-418B-B124-8AD8970EE608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F32AC7-9419-418B-B124-8AD8970EE608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F32AC7-9419-418B-B124-8AD8970EE608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E11A9E3F-9BE8-4566-9D2F-B5FA05C9C543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E11A9E3F-9BE8-4566-9D2F-B5FA05C9C543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E11A9E3F-9BE8-4566-9D2F-B5FA05C9C543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E11A9E3F-9BE8-4566-9D2F-B5FA05C9C543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3DA275-FA38-4ED7-B95B-EF35A1899D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3DA275-FA38-4ED7-B95B-EF35A1899D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3DA275-FA38-4ED7-B95B-EF35A1899D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3DA275-FA38-4ED7-B95B-EF35A1899D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE3E0C3-084D-4E56-8EB2-CB7195CB7F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE3E0C3-084D-4E56-8EB2-CB7195CB7F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE3E0C3-084D-4E56-8EB2-CB7195CB7F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE3E0C3-084D-4E56-8EB2-CB7195CB7F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DD3980-EB9E-4A29-B542-74E13C79FDCE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E7FF3A7-FDBB-4386-A9CF-B8B324277C8F}
+	EndGlobalSection
+EndGlobal
